@@ -47,23 +47,27 @@ export default (
     },
 
     async configResolved({ build, root }) {
+      const rootDir = relative(process.cwd(), root) || undefined
+
       // Share some essential Vite config with Wordpress.
       let { outDir, assetsDir } = build
-
       // PHP needs the `outDir` relative to the project's root (cwd).
       outDir = relative(process.cwd(), resolve(root, outDir))
       outDir = outDir.replace(/\//g, sep)
 
-      const file = `${wordpressConfigDir}/vite.config.php`
       const manifest =
-        typeof build.manifest === 'string' ? build.manifest : undefined
-      const rootDir = relative(process.cwd(), root) || undefined
+        typeof build.manifest === 'string'
+          ? build.manifest
+          : '.vite/manifest.json'
+
       const config = phpConfigTemplate({
         rootDir,
         outDir,
         assetsDir,
         manifest,
       })
+
+      const file = `${wordpressConfigDir}/vite.config.php`
 
       // Only write the config file if it doesn't exist or has older content.
       try {

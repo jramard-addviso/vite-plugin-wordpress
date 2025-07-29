@@ -3,5 +3,6 @@
 // Configure your settings in the "vite.config.js" file instead.
 return [
   'outDir' => 'dist',
-  'assetsDir' => 'assets'
+  'assetsDir' => 'assets',
+  'manifest' => '.vite/manifest.json'
 ];
