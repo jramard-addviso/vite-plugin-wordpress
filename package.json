@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-wordpress",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A plugin to properly integrate a Vite workflow into WordPress.",
   "keywords": [
     "plugin",
